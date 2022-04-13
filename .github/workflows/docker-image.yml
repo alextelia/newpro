@@ -15,5 +15,5 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag edhub-docker-snapshot-local.jfrog.teliacompany.io/edhub-base/python/${python_ver}/telia-debian-buster-python:latest
-       echo "${{ secrets.PASSWORD }}" | docker login edhub-docker-snapshot-local.jfrog.teliacompany.io
+      run: docker build . --file Dockerfile --tag common-dockerhub-remote.jfrog.teliacompany.io/python:${python_ver}-slim-buster
+       echo "${{ secrets.PASSWORD }}" docker login edhub-docker-snapshot-local.jfrog.teliacompany.io
