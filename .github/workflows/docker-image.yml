@@ -1,19 +1,31 @@
 name: Docker Image CI
 
+
+
 on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+push:
+branches: [ main ]
+pull_request:
+branches: [ main ]
+
+
 
 jobs:
 
-  build:
 
-    runs-on: ubuntu-latest
 
-    steps:
-    - uses: actions/checkout@v3
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag common-dockerhub-remote.jfrog.teliacompany.io/python:${python_ver}-slim-buster
-       echo "${{ secrets.PASSWORD }}" docker login edhub-docker-snapshot-local.jfrog.teliacompany.io
+ build:
+
+
+
+ runs-on: ubuntu-latest
+
+
+
+ steps:
+- uses: actions/checkout@v3
+- name: Build the Docker image
+  run: docker build . --file Dockerfile --tag edhub-docker-snapshot-local.jfrog.teliacompany.io/edhub-base/python/${python_ver}/telia-debian-buster-python:latest
+  name: Push the Docker image
+  run: docker push edhub-docker-snapshot-local.jfrog.teliacompany.io/edhub-base/python/${python_ver}/telia-debian-buster-python:latest
+  echo "${{ secrets.PASSWORD }}" && docker login edhub-docker-snapshot-local.jfrog.teliacompany.io
