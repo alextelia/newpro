@@ -27,5 +27,4 @@ jobs:
 - name: Build the Docker image
   run: docker build . --file Dockerfile --tag edhub-docker-snapshot-local.jfrog.teliacompany.io/edhub-base/python/${python_ver}/telia-debian-buster-python:latest
   name: Push the Docker image
-  run: docker push edhub-docker-snapshot-local.jfrog.teliacompany.io/edhub-base/python/${python_ver}/telia-debian-buster-python:latest
-     -p ${{ secrets.PASSWORD }}" && docker login edhub-docker-snapshot-local.jfrog.teliacompany.io
+  run: docker login -u edhub-docker-snapshot-local.jfrog.teliacompany.io -p ${{ secrets.PASSWORD }} && docker push edhub-docker-snapshot-local.jfrog.teliacompany.io/edhub-base/python/${python_ver}/telia-debian-buster-python:latest
